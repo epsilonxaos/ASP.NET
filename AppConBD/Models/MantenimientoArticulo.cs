@@ -17,6 +17,7 @@ namespace AppConBD.Models
             con = new MySqlConnection(constr);
         }
 
+        //Metodo: Agregar un nuevo dato
         public int Alta(Articulo art)
         {
             Conectar();
@@ -36,7 +37,7 @@ namespace AppConBD.Models
             return i;
         }
 
-        //Mostrar
+        //Metodo: Mostrar datos de la BD
         public List<Articulo> MostrarTodos()
         {
             Conectar();
@@ -59,6 +60,52 @@ namespace AppConBD.Models
             }
             con.Close();
             return articulos;
+        }
+
+        //Metodo: ---
+        public Articulo Recuperar(int codigo)
+        {
+            Conectar();
+            MySqlCommand comando = new MySqlCommand("Select codigo, descripcion, precio from articulo", con);
+            comando.Parameters.Add("@codigo", MySqlDbType.Int16);
+            comando.Parameters["@codigo"].Value = codigo;
+
+            con.Open();
+            MySqlDataReader registro = comando.ExecuteReader();
+            Articulo articulo = new Articulo();
+
+            if (registro.Read())
+            {
+                articulo.Codigo = int.Parse(registro["codigo"].ToString());
+                articulo.Descripcion = registro["descripcion"].ToString();
+                articulo.Precio = float.Parse(registro["precio"].ToString());
+            }
+
+            con.Close();
+            return articulo;
+        }
+
+        //Metodo: Modificar un dato 
+        public int Modificar(Articulo art)
+        {
+            Conectar();
+
+            MySqlCommand comando = new MySqlCommand("Update articulo set descripcion=@descripcion, precio=@precio where codigo=@codigo", con);
+
+            comando.Parameters.Add("@descripcion", MySqlDbType.VarChar);
+            comando.Parameters["@descripcion"].Value = art.Descripcion;
+
+            comando.Parameters.Add("@precio", MySqlDbType.Float);
+            comando.Parameters["@precio"].Value = art.Precio;
+
+            comando.Parameters.Add("@codigo", MySqlDbType.Int16);
+            comando.Parameters["@codigo"].Value = art.Codigo;
+
+            con.Open();
+            int i = comando.ExecuteNonQuery();
+            con.Close();
+
+            return i;
         }
     }
 }
