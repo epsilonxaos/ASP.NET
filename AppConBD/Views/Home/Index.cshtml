@@ -1,0 +1,37 @@
+﻿@model IEnumerable<AppConBD.Models.Articulo>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div>
+        <table class="table">
+            <tr>
+                <th>Codigo</th>
+                <th>Descripcion</th>
+                <th>Precio</th>
+                <th>Borrar</th>
+                <th>Modificar</th>
+            </tr>
+            @foreach (var articulo in Model)
+            {
+            <tr>
+                <td>@articulo.Codigo</td>
+                <td>@articulo.Descripcion</td>
+                <td>@articulo.Precio</td>
+                <td><a href="/Home/Baja?cod=@articulo.Codigo">borrar</a></td>
+                <td><a href="/Home/Modificacion?cod=@articulo.Codigo">modificar</a></td>
+            </tr>
+            }
+        </table>
+    </div>
+</body>
+</html>
