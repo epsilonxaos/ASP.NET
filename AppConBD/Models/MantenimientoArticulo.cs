@@ -36,6 +36,7 @@ namespace AppConBD.Models
             return i;
         }
 
+        //Mostrar
         public List<Articulo> MostrarTodos()
         {
             Conectar();
