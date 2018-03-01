@@ -1,0 +1,30 @@
+﻿@model AppConBD.Models.Articulo
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Modificacion</title>
+</head>
+<body>
+    <div>
+        <form action="/Home/Modificacion" method="post">
+            <label>Codigo:</label>
+            <input type="number" name="codigo" value="@Model.Codigo" readonly/>
+            <br />
+            <label>Descripcion:</label>
+            <input type="text" name="descripcion" value="@Model.Descripcion"/>
+            <br />
+            <label>Precio:</label>
+            <input type="text" name="precio" value="@Model.Precio"/>
+            <br />
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+</body>
+</html>

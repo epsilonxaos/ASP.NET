@@ -13,8 +13,8 @@
 </head>
 <body>
     <div>
-        <h1>Primera app</h1>       
-         <table class="table">
+        <h1>Primera app</h1>
+        <table class="table">
             <tr>
                 <th>Codigo</th>
                 <th>Descripcion</th>
@@ -23,7 +23,7 @@
                 <th>Modificar</th>
             </tr>
             @foreach (var articulo in Model)
-            {
+        {
             <tr>
                 <td>@articulo.Codigo</td>
                 <td>@articulo.Descripcion</td>
@@ -31,8 +31,9 @@
                 <td><a href="/Home/Baja?cod=@articulo.Codigo">borrar</a></td>
                 <td><a href="/Home/Modificacion?cod=@articulo.Codigo">modificar</a></td>
             </tr>
-            }
+    }
         </table>
+        <a href="/Home/Alta">Agregar</a>
     </div>
 </body>
 </html>

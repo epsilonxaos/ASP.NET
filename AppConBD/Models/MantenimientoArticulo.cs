@@ -21,7 +21,7 @@ namespace AppConBD.Models
         public int Alta(Articulo art)
         {
             Conectar();
-            MySqlCommand comando = new MySqlCommand("insert into articulos(codigo, descripcion, precio) values (@codio, @descripcion, @precio)", con);
+            MySqlCommand comando = new MySqlCommand("insert into articulo(codigo, descripcion, precio) values (@codigo, @descripcion, @precio)", con);
             comando.Parameters.Add("@codigo", MySqlDbType.Int16);
             comando.Parameters.Add("@descripcion", MySqlDbType.VarChar);
             comando.Parameters.Add("@precio", MySqlDbType.Float);
@@ -37,7 +37,7 @@ namespace AppConBD.Models
             return i;
         }
 
-        //Metodo: Mostrar datos de la BD
+        //Metodo: Mostrar todos los datos
         public List<Articulo> MostrarTodos()
         {
             Conectar();
@@ -62,7 +62,7 @@ namespace AppConBD.Models
             return articulos;
         }
 
-        //Metodo: ---
+        //Metodo: --- Recupear?
         public Articulo Recuperar(int codigo)
         {
             Conectar();
@@ -100,6 +100,21 @@ namespace AppConBD.Models
 
             comando.Parameters.Add("@codigo", MySqlDbType.Int16);
             comando.Parameters["@codigo"].Value = art.Codigo;
+
+            con.Open();
+            int i = comando.ExecuteNonQuery();
+            con.Close();
+
+            return i;
+        }
+
+        //Metodo: Eliminar dato
+        public int Borrar(int codigo)
+        {
+            Conectar();
+            MySqlCommand comando = new MySqlCommand("Delete from articulo where codigo=@codigo", con);
+            comando.Parameters.Add("@codigo", MySqlDbType.Int16);
+            comando.Parameters["@codigo"].Value = codigo;
 
             con.Open();
             int i = comando.ExecuteNonQuery();
