@@ -1,3 +1,6 @@
-# C-Asp.net-mvc-Mysql
+# Project ASP.net 
 
-Yo soy guapo
+In this an webapp wich use MVC with MySQL.
+
+Its main function is to do CRUD operations: 
+(Create, Delete, Update and Show all register)
